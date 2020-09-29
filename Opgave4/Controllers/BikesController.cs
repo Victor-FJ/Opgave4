@@ -55,11 +55,12 @@ namespace Opgave4.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult Post([FromBody] Bike value)
         {
-            for (int i = 1; i <= _bikes.Count; i++)
+            string response = $"The bike - {value} - was created";
+            for (int i = 1; i <= _bikes.Count + 1; i++)
                 if (_bikes.Find(x => x.Id == i) == null)
                     value.Id = i;
             _bikes.Add(value);
-            return Ok($"The bike - {value} - was created");
+            return Ok(response + $" with the new id {value.Id}");
         }
 
         // PUT api/<BikesController>/5
